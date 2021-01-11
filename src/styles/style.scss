@@ -1,0 +1,11 @@
+@import './fonts.scss';
+
+$fontRoboto: 'Roboto' , sans-serif;
+
+body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $fontRoboto;
+}
