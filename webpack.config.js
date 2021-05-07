@@ -87,7 +87,7 @@ module.exports = {
                     name(resourcePath, resourceQuery) {
                       // `resourcePath` - `/absolute/path/to/file.js`
                       // `resourceQuery` - `?foo=bar`
-                      return isDev ? '/fonts/[contenthash].[ext]' : '/fonts/[name].[contenthash].[ext]';
+                      return isDev ? 'assets/fonts/[name].[ext]' : 'assets/fonts/[name].[ext]';
                     },
                 }    
             },
