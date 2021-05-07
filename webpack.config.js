@@ -1,14 +1,13 @@
-// webpack config
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+
 const Optimization = ()=>                          
 {
     const CONFIG = 
@@ -39,7 +38,7 @@ module.exports = {
         hot: false,
         open: true,
     },
-    devtool: 'source-map', // isDev ? 'source-map' : false,
+    devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({ 
             template: path.resolve(__dirname, './src/html/index.html'),
@@ -48,11 +47,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
-        // new CopyWebpackPlugin({ 
-        //     patterns: [
-        //         { from: path.resolve(__dirname, './src/assets') , to: path.resolve(__dirname, './dist') }
-        //     ]
-        // }),
     ],
     module: {
         rules: [
@@ -65,7 +59,7 @@ module.exports = {
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ],
             },
             {   
-                test: /\.(png|jpe?g|gif|svg)$/i,
+                test: /\.(png|jpe?g|gif|svg|bmp)$/i,
                 loader: 'file-loader',
                 options: {
                   name(resourcePath, resourceQuery) {
@@ -87,7 +81,7 @@ module.exports = {
                     name(resourcePath, resourceQuery) {
                       // `resourcePath` - `/absolute/path/to/file.js`
                       // `resourceQuery` - `?foo=bar`
-                      return isDev ? 'assets/fonts/[name].[ext]' : 'assets/fonts/[name].[ext]';
+                      return 'assets/fonts/[name].[ext]';
                     },
                 }    
             },
